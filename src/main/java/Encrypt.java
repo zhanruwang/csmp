@@ -24,7 +24,7 @@ public class Encrypt {
     public static final int TRANSFORM_END = (int) '~';
 
     /** Modulo to use for our transformation. */
-    public static final int TRANSFORM_MODULUS = (int) '~' - (int) ' ' + 1;
+    public static final int TRANSFORM_MODULUS = TRANSFORM_END - TRANSFORM_START;
 
     /**
      * Encrypt a single line of text using a rotate-N transformation.
