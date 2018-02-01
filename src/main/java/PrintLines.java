@@ -52,7 +52,8 @@ public class PrintLines {
      * Complete the Javadoc comment and write this function.
      */
     public static void printLinesFor(final String actress, final String[] scriptLines) {
-        return 0.0;
+        System.out.println(actress.startsWith(""));
+        System.out.println(actress.toUpperCase());
     }
 
     /* ********************************************************************************************

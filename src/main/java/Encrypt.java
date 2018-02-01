@@ -48,7 +48,23 @@ public class Encrypt {
      * @see <a href="http://www.asciitable.com/">ASCII Character Table</a>
      */
     public static char[] encrypt(final char[] line, final int shift) {
-        return 0;
+        if (shift > MAX_SHIFT || shift < MIN_SHIFT){
+            return null;
+        } else{
+            for (int i = 0; i < line.length; i++){
+                if (shift > 0) {
+                    if ((line[i] + shift) > TRANSFORM_END) {
+                        line[i] = (char) (line[i] % TRANSFORM_MODULUS);
+                    }
+                }
+                if (shift < 0) {
+                    if ((line[i] + shift) < TRANSFORM_START) {
+                        line[i] = (char) (TRANSFORM_END - Math.abs(line[i] % TRANSFORM_MODULUS));
+                    }
+                }
+                line[i] += shift;
+            }
+        }
     }
 
     /**
