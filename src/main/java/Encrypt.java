@@ -56,7 +56,7 @@ public class Encrypt {
                 if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
                     return null;
                 } else {
-                    int n = line[i] + (shift%TRANSFORM_MODULUS);
+                    int n = line[i] + (shift % TRANSFORM_MODULUS);
                     if (n > TRANSFORM_END) {
                         n = (char) ((n - TRANSFORM_MODULUS));
                     }

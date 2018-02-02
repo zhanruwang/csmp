@@ -52,13 +52,20 @@ public class PrintLines {
      * Complete the Javadoc comment and write this function.
      */
     public static void printLinesFor(final String actress, final String[] scriptLines) {
+        boolean yes = false;
         for (int i = 0; i < scriptLines.length; i++) {
-            boolean exist = false;
-            if (scriptLines[i].equals(actress)) {
-                System.out.println(actress.toUpperCase());
-            }
-            if (exist == true){
-                System.out.println(scriptLines[i]);
+            if (scriptLines[i].equals(actress.toUpperCase())) {
+                if (yes == false) {
+                    System.out.println(actress.toUpperCase());
+                    System.out.println("---");
+                    yes = true;
+                }
+                i++;
+                while(!scriptLines[i].equals("")){
+                    System.out.println(scriptLines[i]);
+                    i++;
+                }
+                System.out.println("---");
             }
         }
     }
