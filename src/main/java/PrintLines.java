@@ -53,8 +53,12 @@ public class PrintLines {
      */
     public static void printLinesFor(final String actress, final String[] scriptLines) {
         for (int i = 0; i < scriptLines.length; i++) {
+            boolean exist = false;
             if (scriptLines[i].equals(actress)) {
                 System.out.println(actress.toUpperCase());
+            }
+            if (exist == true){
+                System.out.println(scriptLines[i]);
             }
         }
     }

@@ -56,13 +56,13 @@ public class Encrypt {
                 if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
                     return null;
                 } else {
-                    int n = line[i] + shift;
+                    int n = line[i] + (shift%TRANSFORM_MODULUS);
                     if (n > TRANSFORM_END) {
-                        n = (char) (TRANSFORM_START + ((n - TRANSFORM_END - 1) % TRANSFORM_MODULUS));
-                        if (n < TRANSFORM_START) {
-                            n = (char) (TRANSFORM_END - ((TRANSFORM_START - n - 1) % TRANSFORM_MODULUS));
-                        }
+                        n = (char) ((n - TRANSFORM_MODULUS));
                     }
+                        if (n < TRANSFORM_START) {
+                            n = (char) ((n + TRANSFORM_MODULUS));
+                        }
                     //n += shift;
                     array1[i] = (char) n;
                 }
@@ -82,29 +82,28 @@ public class Encrypt {
      * @see <a href="http://www.asciitable.com/">ASCII Character Table</a>
      */
     public static char[] decrypt(final char[] line, final int shift){
-            char[] array1 = new char[line.length];
-            if (shift > MAX_SHIFT || shift < MIN_SHIFT) {
-                return null;
-            } else {
-                for (int i = 0; i < line.length; i++) {
-                    if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
-                        return null;
-                    } else {
-                        int n = line[i] + shift;
-                        if (n > TRANSFORM_END) {
-                            n = (char) (TRANSFORM_START + ((n - TRANSFORM_END - 1) % TRANSFORM_MODULUS));
-                            if (n < TRANSFORM_START) {
-                                n = (char) (TRANSFORM_END - ((TRANSFORM_START - n - 1) % TRANSFORM_MODULUS));
-                            }
-                        }
-                        //n += shift;
-                        array1[i] = (char) n;
+        char[] array1 = new char[line.length];
+        if (shift > MAX_SHIFT || shift < MIN_SHIFT) {
+            return null;
+        } else {
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
+                    return null;
+                } else {
+                    int n = line[i] + ((-1*shift)%TRANSFORM_MODULUS);
+                    if (n > TRANSFORM_END) {
+                        n = (char) ((n - TRANSFORM_MODULUS));
                     }
+                    if (n < TRANSFORM_START) {
+                        n = (char) ((n + TRANSFORM_MODULUS));
+                    }
+                    //n += shift;
+                    array1[i] = (char) n;
                 }
-                return array1;
             }
+            return array1;
         }
-
+    }
 
             /**********************************************************************************************
              * You do not need to modify code below this comment.
