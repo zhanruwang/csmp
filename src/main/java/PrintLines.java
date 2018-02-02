@@ -50,6 +50,8 @@ public class PrintLines {
      * </ol>
      * <p>
      * Complete the Javadoc comment and write this function.
+     * @param actress name of actress
+     * @param scriptLines the scriptlines
      */
     public static void printLinesFor(final String actress, final String[] scriptLines) {
         boolean yes = false;
@@ -61,7 +63,7 @@ public class PrintLines {
                     yes = true;
                 }
                 i++;
-                while(!scriptLines[i].equals("")){
+                while (!scriptLines[i].equals("")) {
                     System.out.println(scriptLines[i]);
                     i++;
                 }

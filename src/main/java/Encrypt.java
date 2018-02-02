@@ -44,7 +44,9 @@ public class Encrypt {
      * credit.</strong>
      * <p>
      * Complete the Javadoc comment for this function and write it.
-     *
+     * @return return a value
+     * @param line line array
+     * @param shift shift a value
      * @see <a href="http://www.asciitable.com/">ASCII Character Table</a>
      */
     public static char[] encrypt(final char[] line, final int shift) {
@@ -81,7 +83,7 @@ public class Encrypt {
      * @return line decrypted by rotating the specified amount
      * @see <a href="http://www.asciitable.com/">ASCII Character Table</a>
      */
-    public static char[] decrypt(final char[] line, final int shift){
+    public static char[]decrypt(final char[] line, final int shift) {
         char[] array1 = new char[line.length];
         if (shift > MAX_SHIFT || shift < MIN_SHIFT) {
             return null;
@@ -90,7 +92,7 @@ public class Encrypt {
                 if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
                     return null;
                 } else {
-                    int n = line[i] + ((-1*shift)%TRANSFORM_MODULUS);
+                    int n = line[i] + ((-1 * shift) % TRANSFORM_MODULUS);
                     if (n > TRANSFORM_END) {
                         n = (char) ((n - TRANSFORM_MODULUS));
                     }
