@@ -48,22 +48,26 @@ public class Encrypt {
      * @see <a href="http://www.asciitable.com/">ASCII Character Table</a>
      */
     public static char[] encrypt(final char[] line, final int shift) {
-        if (shift > MAX_SHIFT || shift < MIN_SHIFT){
+        char[] array1 = new char[line.length];
+        if (shift > MAX_SHIFT || shift < MIN_SHIFT) {
             return null;
-        } else{
-            for (int i = 0; i < line.length; i++){
-                if (shift > 0) {
-                    if ((line[i] + shift) > TRANSFORM_END) {
-                        line[i] = (char) (line[i] % TRANSFORM_MODULUS);
+        } else {
+            for (int i = 0; i < line.length; i++) {
+                if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
+                    return null;
+                } else {
+                    int n = line[i] + shift;
+                    if (n > TRANSFORM_END) {
+                        n = (char) (TRANSFORM_START + ((n - TRANSFORM_END - 1) % TRANSFORM_MODULUS));
+                        if (n < TRANSFORM_START) {
+                            n = (char) (TRANSFORM_END - ((TRANSFORM_START - n - 1) % TRANSFORM_MODULUS));
+                        }
                     }
+                    //n += shift;
+                    array1[i] = (char) n;
                 }
-                if (shift < 0) {
-                    if ((line[i] + shift) < TRANSFORM_START) {
-                        line[i] = (char) (TRANSFORM_END - Math.abs(line[i] % TRANSFORM_MODULUS));
-                    }
-                }
-                line[i] += shift;
             }
+            return array1;
         }
     }
 
@@ -77,13 +81,34 @@ public class Encrypt {
      * @return line decrypted by rotating the specified amount
      * @see <a href="http://www.asciitable.com/">ASCII Character Table</a>
      */
-    public static char[] decrypt(final char[] line, final int shift) {
-        return 0;
-    }
+    public static char[] decrypt(final char[] line, final int shift){
+            char[] array1 = new char[line.length];
+            if (shift > MAX_SHIFT || shift < MIN_SHIFT) {
+                return null;
+            } else {
+                for (int i = 0; i < line.length; i++) {
+                    if (line[i] < TRANSFORM_START || line[i] > TRANSFORM_END) {
+                        return null;
+                    } else {
+                        int n = line[i] + shift;
+                        if (n > TRANSFORM_END) {
+                            n = (char) (TRANSFORM_START + ((n - TRANSFORM_END - 1) % TRANSFORM_MODULUS));
+                            if (n < TRANSFORM_START) {
+                                n = (char) (TRANSFORM_END - ((TRANSFORM_START - n - 1) % TRANSFORM_MODULUS));
+                            }
+                        }
+                        //n += shift;
+                        array1[i] = (char) n;
+                    }
+                }
+                return array1;
+            }
+        }
 
-    /**********************************************************************************************
-     * You do not need to modify code below this comment.
-     **********************************************************************************************/
+
+            /**********************************************************************************************
+             * You do not need to modify code below this comment.
+             **********************************************************************************************/
 
     /**
      * Solicits a single line of text from the user, encrypts it using a random shift, and then

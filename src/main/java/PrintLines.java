@@ -52,8 +52,11 @@ public class PrintLines {
      * Complete the Javadoc comment and write this function.
      */
     public static void printLinesFor(final String actress, final String[] scriptLines) {
-        System.out.println(actress.startsWith(""));
-        System.out.println(actress.toUpperCase());
+        for (int i = 0; i < scriptLines.length; i++) {
+            if (scriptLines[i].equals(actress)) {
+                System.out.println(actress.toUpperCase());
+            }
+        }
     }
 
     /* ********************************************************************************************
